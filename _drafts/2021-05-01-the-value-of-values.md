@@ -204,7 +204,8 @@ value class Amount private constructor(val value: BigDecimal) {
 val onePointTwoSeven: Result<Amount> = Amount.parse("1.271!")
 ```
 
-Conversely, we also want to be able to display (or "show") the wrapped value in the correct format. Overriding the
+Conversely, we also want to be able to display (or "show") the wrapped value in the correct format. Overriding
+the `toString()` method for non-diagnostic reasons can be dangerous, so we can do it with yet another companion method:
 
 ```kotlin
 @JvmInline
