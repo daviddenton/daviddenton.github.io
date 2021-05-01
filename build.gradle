@@ -1,0 +1,59 @@
+buildscript {
+    ext.kotlin_version = "1.5.0"
+    ext.http4k_version = "4.8.0.0"
+    ext.mockk_version = "1.10.5"
+    ext.junit_version = "5.7.1"
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'kotlin'
+
+sourceSets {
+    test {
+        kotlin {
+            srcDirs += "_code"
+            srcDirs += "_posts"
+        }
+    }
+}
+
+kotlin {
+    sourceSets.all {
+        languageSettings.enableLanguageFeature('InlineClasses')
+    }
+}
+
+dependencies {
+    implementation("dev.forkhandles:values4k:1.10.0.0")
+    implementation("dev.forkhandles:result4k:1.10.0.0")
+    implementation("dev.forkhandles:partial4k:1.10.0.0")
+    implementation("org.http4k:http4k-core:$http4k_version")
+    implementation("org.http4k:http4k-client-okhttp:$http4k_version")
+    implementation("org.http4k:http4k-server-netty:$http4k_version")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
+    testImplementation(platform("org.junit:junit-bom:$junit_version"))
+    testImplementation("io.mockk:mockk:$mockk_version")
+    testImplementation("org.http4k:http4k-testing-hamkrest:$http4k_version")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine")
+
+}
+
+compileKotlin.kotlinOptions.jvmTarget = "1.8"
+compileTestKotlin.kotlinOptions.jvmTarget = "1.8"
+compileTestKotlin.kotlinOptions.useIR = true
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8

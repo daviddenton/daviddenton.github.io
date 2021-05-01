@@ -1,0 +1,9 @@
+<ul class="list-inline text-center footer-links">
+
+{%- for link in site.social-network-links -%}
+    <li class="list-inline-item">
+        <a href="{{ link[1] | relative_url }}"><img class="dim-link" width="50px" src="/assets/img/{{ link[0] }}_icon.png" alt="{{ link[0] }}"/></a>
+    </li>
+{%- endfor -%}
+
+</ul>
