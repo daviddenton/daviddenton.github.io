@@ -187,7 +187,7 @@ transformation:
 
 ```String -> (parse) -> BigDecimal -> (validate) -> Amount```
 
-Let's say we've got a special format which prints a special '!' suffix for our amounts. We can do this with another
+Let's say we've got a special format which prints a special '!' suffix for our amounts. Ingestion can be done with a
 companion factory function `parse()` that will handle this conversion for us, returning our choice of exception or
 `Result` type.
 
