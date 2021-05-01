@@ -14,7 +14,7 @@ library extends these for common use-cases.
 
 ### TL;DR
 
-> **"Aggressively type domain values to avoid references to StdLib primitive types in business-logic code. This acts as a force multiplier not only in terms of type-safety but also in self-organising code. One option for this is Kotlin's Value classes, but they may or may not give you all the functionality you need for all cases."**
+> **"Aggressively type domain values to avoid references to StdLib primitive types in business-logic code. This acts as a force multiplier not only in terms of type-safety but also in self-organising code."**
 
 <a title="Antonio de Pereda - The Gentleman's Dream (El sueño del caballero)"
 href="https://pixabay.com/illustrations/antonio-pereda-oil-on-canvas-1544616/"><img class="article" alt="Image by
@@ -25,8 +25,8 @@ Chaos07 from Pixabay" src="
 
 As precious knowledge that was handed down to me, I've been vocally espousing the use of **
 Microtypes-aka-Tiny-types-aka-Domain-Wrappers** for at least as long as I care to remember. The general idea is to avoid
-using bare types, well, pretty much anywhere in the signatures of your codebase where the value represents a domain
-concept.
+using standard primitive types, well, pretty much anywhere in the signatures of your codebase where the value represents
+a domain concept.
 
 Here's a simple example for a bank transfer function:
 
@@ -35,16 +35,17 @@ fun transferMoneyTo(amount: BigDecimal, sortCode: String, account: String)
 ```
 
 One problem here is one of type-safety - the `sortCode` and `account` arguments are both of type `String`, meaning that
-a coder could accidentally switch these values around and we would not potentially notice until runtime. Maybe not such
-a problem with two values, but scale up this issue to a function that takes five `Strings` and we start to see how
+a developer can accidentally switch these values around and we would not potentially notice until runtime. Maybe not
+such a problem with two values, but scale up this issue to a function that takes five `Strings` and we start to see how
 mistakes could be easily made.
 
-Historically, the Kotlin language and tooling has give us tools to mitigate this problem somewhat - most notably named
-arguments and type-hints in the IDE, but from my experience these are a mediocre safety-net.
+Historically, the Kotlin language and tooling has give us tools to mitigate this problem somewhat - most
+notably [named arguments](https://kotlinlang.org/docs/functions.html#named-arguments) and type-hints in the IDE, but
+from my experience these are a fairly mediocre safety-net.
 
 Instead, giving each of these values a simple type-safe class wrapper (aka Microtype) will mitigate this problem - let's
-make it a data class so we retain equality and friendly toString() semantics; this also tidies up our function signature
-nicely:
+make it a data class so we retain equality and friendly `toString()` semantics; this also tidies up our function
+signature nicely to be safer:
 
 ```kotlin
 data class Amount(val value: BigDecimal)
@@ -55,26 +56,30 @@ fun transferMoneyTo(amount: Amount, sortCode: SortCode, account: Account)
 ```
 
 One popular argument against this approach is that creating lots of tiny objects on the heap will lead to
-performance/memory impact. For the vast majority of apps this impact (in concert with the amazing abilities of the JVM
-to self-tune) is probably negligible - but regardless, JetBrains did a clever thing and introduced the idea of Inline (
-now Value) classes in Kotlin. These classes give us Microtype levels of type-safety at compile time, but can be thought
-of as user-defined boxed types (in the same way as standard Kotlin primitives such as Int and Boolean) at runtime. As of
-Kotlin 1.5, we can switch out our data class to the newly stable value class equivalent, meaning we can use them with
-none of the performance impact:
+performance/memory impact. For the vast majority of projects this impact (in concert with the amazing abilities of the
+JVM to self-tune) is probably negligible - but regardless, JetBrains did a clever thing and introduced the idea
+of `Inline` (now `Value`) classes in Kotlin.
+
+These classes give us Microtype levels of type-safety at compile time, but can be thought of as user-defined boxed
+types (in the same way as standard Kotlin primitives such as Int and Boolean) at runtime. As of Kotlin 1.5.0, we can
+switch out our data class to the newly stable value class equivalent, meaning we can use them with none of the
+performance impact:
 
 ```kotlin
 @JvmInline
 value class Amount(val value: BigDecimal)
 ```
 
-> So. We're all done, right? I'll stick types everywhere and everything will be sunshine and strawberries?
+> So. We're all done, right? I'll stick value classes everywhere and everything will be sunshine and strawberries?
 
 Sorry - not quite yet.
 
-Regardless of the mechanic that you use to implement it, the other advantages of Microtypes have always been there - and
-not just in Kotlin. Once you have these small types proliferating your codebase, lots of other things may start becoming
-easier. Want to see everywhere that references a `SortCode`? **Alt + F7** will find all usages of it. If you have all
-the instances available in a method call, **Ctrl + Space** and the IDE will auto-complete a call to `transferMoneyTo()`.
+Regardless of the mechanic that you use to implement it, there are other advantages of Microtypes which would be useful; these have always been there - and not just in Kotlin. Once you have these small types proliferating your codebase,
+lots of other things may start becoming easier. Want to see everywhere that references a `SortCode`? **Alt + F7** will
+find all usages of it. If you have all the instances available in a method call, a quick **Ctrl + Space** and the IDE will
+auto-complete a call to `transferMoneyTo()`.
+
+Let's visit each of these other advantages in turn, so we can see how they can be applied to our code.
 
 ### The law of attraction
 
@@ -173,7 +178,9 @@ transformation:
 
 ```String -> (parse) -> BigDecimal -> (validate) -> Amount```
 
-Let's say we've got a special format which prints a special '!' suffix for our amounts. We can do this with another companion factory function `parse()` that will handle this conversion for us, returning our choice of exception or Result type.
+Let's say we've got a special format which prints a special '!' suffix for our amounts. We can do this with another
+companion factory function `parse()` that will handle this conversion for us, returning our choice of exception or
+Result type.
 
 ```kotlin
 @JvmInline
@@ -203,6 +210,7 @@ value class Amount private constructor(val value: BigDecimal) {
 val amount = Amount.of(BigDecimal("1.267")).getOrThrow()
 val onePointTwoSeven = Amount.show(amount)
 ```
+
 As with most good ideas, and as I'm a (or at least one of a merry band of) horrifically lazy programmer, the concepts
 behind Microtypes were encoded in an open-source library that we could use over and over again without having to
 reinvent the wheel at every company we worked at.
