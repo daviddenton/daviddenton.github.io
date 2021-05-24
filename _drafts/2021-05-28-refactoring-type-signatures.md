@@ -1,13 +1,11 @@
 ---
-layout: post 
-title: "Refactoring Kotlin type-signatures for fun and profit"
+layout: post title: "Refactoring Kotlin type-signatures for fun and profit"
 tags: [kotlin, fp, design]
-comments: false
-thumbnail: assets/img/refactoring-type-signatures.jpg
+comments: false thumbnail: assets/img/refactoring-type-signatures.jpg
 ---
 
-In which I tell the story of how the core concepts of [http4k] came to be, and how we used simple refactoring techniques
-to derive them from an unexpected source.
+In which I derive the core type signatures of the [http4k] from an unexpected source, by using refactoring and FP
+techniques more commonly associated with coding.
 
 <hr/>
 
