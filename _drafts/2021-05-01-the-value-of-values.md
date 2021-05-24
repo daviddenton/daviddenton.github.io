@@ -1,11 +1,12 @@
 ---
-layout: post title: "The value of values: Leveraging Kotlin's value classes"
+layout: post
+title: "The value of values: Leveraging Kotlin's value classes"
 tags: [kotlin, fp, design]
-comments: false thumbnail: assets/img/the-value-of-values.jpg
+comments: false
+thumbnail: assets/img/the-value-of-values.jpg
 ---
 
-In which explore the abilities that Kotlin's [value classes](https://kotlinlang.org/docs/inline-classes.html) give us
-for making our code both friendlier and safer, and how
+In which I explore the abilities that Kotlin's [value classes](https://kotlinlang.org/docs/inline-classes.html) give us for making our code both friendlier and safer, and how
 the [Values4k](https://github.com/fork-handles/forkhandles/tree/trunk/values4k)
 library extends these for common use-cases.
 
