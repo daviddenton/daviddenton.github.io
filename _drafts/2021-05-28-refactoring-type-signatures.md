@@ -16,9 +16,8 @@ to derive them from an unexpected source.
 > **"You can apply simple refactoring and functional techniques such as substitution and currying to refine function signatures."**
 
 <a title="Magic Conjure Conjurer Wand Cards"
-href=https://pixabay.com/users/anncapictures-1564471"><img class="article" alt="Image by AnnCapictures from Pixabay"
-src="
-../../../assets/img/refactoring-type-signatures.jpg"></a>
+href="https://pixabay.com/users/anncapictures-1564471"><img class="article" alt="Image by AnnCapictures from Pixabay"
+src="../../../assets/img/refactoring-type-signatures.jpg"/></a>
 
 <hr/>
 
