@@ -10,7 +10,7 @@ navbar-links:
   training: /training
   speaking: /speaking
 
-avatar: "/assets/img/avatar-icon.png"
+avatar: "/assets/img/profile.jpg"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
