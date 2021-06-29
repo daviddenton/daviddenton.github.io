@@ -88,7 +88,7 @@ interface Filter : (HttpHandler) -> HttpHandler
 
 So there you have it. Turns out that [Everything old is (actually) new again]!
 
-[TalkingKotlin]: https://talkingkotlin.com
+[TalkingKotlin]: https://talkingkotlin.com/http-as-a-function-with-http4k/
 
 [Servlet Filter]: https://www.oracle.com/java/technologies/filters.html
 
