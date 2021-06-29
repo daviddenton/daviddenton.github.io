@@ -46,7 +46,7 @@ interface FilterChain : (ServletRequest, ServletResponse) -> Unit
 interface Filter : (ServletRequest, ServletResponse, FilterChain) -> Unit
 ```
 
-As [http4k] is a library heavily inspired by Functional Programming, we then want to make our types immutable, whereas the Servlet types are reliant on mutating the HTTP messages.
+As [http4k] is a library heavily inspired by functional programming, we then want to make our types immutable, whereas the Servlet types are reliant on mutating the HTTP messages.
 In order for the functions to remain pure, we should return a `ServletResponse` from our service instead of `Unit`, so let's use ***Change Signature (Ctrl+F6)*** to do that:
 
 ```kotlin
@@ -61,8 +61,8 @@ interface FilterChain : (ServletRequest) -> ServletResponse
 interface Filter : (FilterChain, ServletRequest) -> ServletResponse
 ```
 
-One thing that is common in more Functional Languages, but that we can't currently do in the IDE (hint hint JetBrains!)
-is to apply [currying] to split the `Filter` into a Higher Order Function (ie. one which returns another function):
+One thing that is common in more functional languages, but that we can't currently do in the IDE (hint hint JetBrains!)
+is to apply [currying] to split the `Filter` into a higher-order function (i.e. one which returns another function):
 
 ```kotlin
 interface FilterChain : (ServletRequest) -> ServletResponse
