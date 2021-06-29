@@ -25,9 +25,7 @@ SaaF) paper. I noted that the pattern described within was the same as the one u
 of `HttpHandler`
 and `Filter` from it.
 
-Just to double check that I wasn't misremembering, I thought I'd revisit the process and write down the steps we went through. On looking back, these turned out to be remarkably
-similar to the steps we'd take when refactoring code, but at a more conceptual level. I thought it would be fun to revisit this process, mapping the steps we took onto the powerful
-refactoring functions that come with IntelliJ.
+Just to double check that I wasn't misremembering, I thought it would be fun to revisit the process. On looking back, this turned out to be remarkably similar to the journey we'd take when refactoring code, but at a more conceptual level. In that vein, we can map the various steps onto the powerful refactoring functions that come with IntelliJ.
 
 To revisit, the Java Servlet Filter API defines the following:
 
