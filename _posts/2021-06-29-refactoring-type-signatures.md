@@ -12,7 +12,7 @@ In which I derive the core type signatures of the [http4k] from an unexpected so
 
 ### TL;DR
 
-> **"You can apply simple refactoring and functional techniques such as substitution and currying to refine function signatures."**
+> **"You can apply simple refactoring and functional techniques such as substitution and currying to refine function signatures. Free of any implementation detail, defining system concepts in this way can be a refreshingly powerful technique."**
 
 <a title="Magic Conjure Conjurer Wand Cards" href="https://pixabay.com/users/anncapictures-1564471">
 <img class="article" alt="Image by AnnCapictures from Pixabay" src="../../../assets/img/refactoring-type-signatures.jpg"/>
