@@ -47,14 +47,14 @@ interface Filter : (ServletRequest, ServletResponse, FilterChain) -> Unit
 ```
 
 As [http4k] is a library heavily inspired by functional programming, we then want to make our types immutable, whereas the Servlet types are reliant on mutating the HTTP messages.
-In order for the functions to remain pure and side-effect free, we should return an immutable `ServletResponse` from our service instead of mutating it and returning `Unit`, so let's use ***Change Signature (Ctrl+F6)*** to do that:
+In order for the functions to remain pure and side-effect free, we should return an immutable `ServletResponse` from our service instead of mutating it and returning `Unit`, so let's use ***Change Signature (Cmd+F6)*** to do that:
 
 ```kotlin
 interface FilterChain : (ServletRequest) -> ServletResponse
 interface Filter : (ServletRequest, FilterChain) -> ServletResponse
 ```
 
-We can then ***Change Signature (Ctrl+F6)*** again to reorder the parameters of the `Filter`:
+We can then ***Change Signature (Cmd+F6)*** again to reorder the parameters of the `Filter`:
 
 ```kotlin
 interface FilterChain : (ServletRequest) -> ServletResponse
