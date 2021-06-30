@@ -6,7 +6,7 @@ comments: false
 thumbnail: assets/img/refactoring-type-signatures.jpg
 ---
 
-In which I derive the core type signatures of the [http4k] from an unexpected source, by using refactoring and FP techniques more commonly associated with coding.
+In which I derive the core type signatures of [http4k] from an unexpected source, by using refactoring and FP techniques more commonly associated with coding.
 
 <hr/>
 
